@@ -1,1 +1,1 @@
-web: gunicorn dashboard-necyvieira.wsgi --log-file -
+web: python dashboard-necyvieira/manage.py runserver "0.0.0.0:$PORT"
