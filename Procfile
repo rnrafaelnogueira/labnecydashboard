@@ -1,1 +1,1 @@
-web:gunicorn dashboard-necyvieira.wsgi
+web:python manage.py runserver
