@@ -122,3 +122,4 @@ toolz==0.9.0
 tqdm==4.28.1
 whitenoise==4.1.4
 django-heroku==0.3.1
+django-adminlte3=0.0.7
