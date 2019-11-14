@@ -16,6 +16,6 @@ python_version = "3.6"
 "psycopg2-binary" = "*"
 django-heroku = "*"
 gunicorn = "*"
-
+django-adminlte3 = "0.0.7"
 
 [dev-packages]
