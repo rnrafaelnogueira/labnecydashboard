@@ -45,6 +45,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'foundation',
     'adminlte3',
      # Optional: Django admin theme (must be before django.contrib.admin)
     'adminlte3_theme',
