@@ -53,30 +53,6 @@ class Despesa(models.Model):
         managed = True
         db_table = 'despesa'
 
-class Fatura(models.Model):
-    id_cliente = models.IntegerField()
-    data_geracao = models.DateTimeField(blank=True, null=True)
-    referencia = models.TextField()
-    enviada = models.CharField(max_length=1)
-    baixada = models.CharField(max_length=1)
-    created_at = models.DateTimeField(blank=True, null=True)
-    updated_at = models.DateTimeField(blank=True, null=True)
-        
-    class Meta:
-        managed = True
-        db_table = 'fatura'
-
-
-class FaturaOrdemServico(models.Model):
-    id_fatura = models.IntegerField()
-    id_ordem_servico = models.IntegerField()
-    created_at = models.DateTimeField(blank=True, null=True)
-    updated_at = models.DateTimeField(blank=True, null=True)
-
-    class Meta:
-        managed = True
-        db_table = 'fatura_ordem_servico'
-
 
 class Fornecedor(models.Model):
     nome = models.TextField()
@@ -295,3 +271,26 @@ class OrdemServico(models.Model):
 
     class Meta:
         db_table = 'ordem_servico'
+
+class Fatura(models.Model):
+    id_cliente = models.ForeignKey(Cliente, models.DO_NOTHING, db_column='id_cliente')
+    data_geracao = models.DateTimeField(blank=True, null=True)
+    referencia = models.TextField()
+    enviada = models.CharField(max_length=1)
+    baixada = models.CharField(max_length=1)
+    created_at = models.DateTimeField(blank=True, null=True)
+    updated_at = models.DateTimeField(blank=True, null=True)
+        
+    class Meta:
+        managed = True
+        db_table = 'fatura'
+
+class FaturaOrdemServico(models.Model):
+    id_fatura = models.ForeignKey(Fatura, models.DO_NOTHING, db_column='id_fatura')
+    id_ordem_servico = models.ForeignKey(OrdemServico, models.DO_NOTHING, db_column='id_ordem_servico')
+    created_at = models.DateTimeField(blank=True, null=True)
+    updated_at = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = True
+        db_table = 'fatura_ordem_servico'
