@@ -278,19 +278,19 @@ class Fatura(models.Model):
     referencia = models.TextField()
     enviada = models.CharField(max_length=1)
     baixada = models.CharField(max_length=1)
+    valor_fatura = models.FloatField(blank=True, null=True)
     created_at = models.DateTimeField(blank=True, null=True)
     updated_at = models.DateTimeField(blank=True, null=True)
         
     class Meta:
-        managed = True
         db_table = 'fatura'
 
 class FaturaOrdemServico(models.Model):
     id_fatura = models.ForeignKey(Fatura, models.DO_NOTHING, db_column='id_fatura')
     id_ordem_servico = models.ForeignKey(OrdemServico, models.DO_NOTHING, db_column='id_ordem_servico')
+    valor = models.FloatField(blank=True, null=True)
     created_at = models.DateTimeField(blank=True, null=True)
     updated_at = models.DateTimeField(blank=True, null=True)
 
     class Meta:
-        managed = True
         db_table = 'fatura_ordem_servico'

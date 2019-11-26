@@ -18,6 +18,15 @@ class ClienteServicoValorAdmin(admin.ModelAdmin):
     list_display = ('id_cliente','id_servico','valor')
     search_fields = ['id_cliente']
 
+
+class FaturaAdmin(admin.ModelAdmin):
+    list_display = ('id_cliente','data_geracao','referencia','valor_fatura')
+    search_fields = ['id_cliente']
+
+class FaturaOrdemServicoAdmin(admin.ModelAdmin):
+    list_display = ('id_fatura','id_servico','valor')
+    search_fields = ['id_cliente']
+
 admin.site.register(OrdemServico,OrdemServicoAdmin)
 admin.site.register(Cliente,ClienteAdmin)
 admin.site.register(Situacao)
