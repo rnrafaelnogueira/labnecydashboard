@@ -20,7 +20,7 @@ class ClienteServicoValorAdmin(admin.ModelAdmin):
 
 
 class FaturaAdmin(admin.ModelAdmin):
-    list_display = ('id_cliente','data_geracao','referencia','valor_fatura')
+    list_display = ('id','id_cliente','data_geracao','referencia','valor_fatura')
     search_fields = ['id_cliente']
 
 class FaturaOrdemServicoAdmin(admin.ModelAdmin):
