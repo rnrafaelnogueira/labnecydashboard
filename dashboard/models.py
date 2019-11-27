@@ -273,6 +273,7 @@ class OrdemServico(models.Model):
         db_table = 'ordem_servico'
 
 class Fatura(models.Model):
+    id = models.IntegerField(blank=True, null=True)
     id_cliente = models.ForeignKey(Cliente, models.DO_NOTHING, db_column='id_cliente')
     data_geracao = models.DateTimeField(blank=True, null=True)
     referencia = models.TextField()
