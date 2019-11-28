@@ -13,11 +13,9 @@ class ClienteAdmin(admin.ModelAdmin):
     list_display = ('id','nome','endereco','telefone')
     search_fields = ['nome']
 
-
 class ClienteServicoValorAdmin(admin.ModelAdmin):
     list_display = ('id','id_cliente','id_servico','valor')
     search_fields = ['id_cliente']
-
 
 class FaturaAdmin(admin.ModelAdmin):
     list_display = ('id','id_cliente','data_geracao','referencia','valor_fatura')
