@@ -291,7 +291,7 @@ class OrdemServico(models.Model):
     valor_total = models.IntegerField(blank=True, null=True)
     valor_unitario = models.IntegerField(blank=True, null=True)
 
-    def __int__(self):
+    def __str__(self):
         return self.id
 
     class Meta:
@@ -308,18 +308,22 @@ class Fatura(models.Model):
     created_at = models.DateTimeField(blank=True, null=True)
     updated_at = models.DateTimeField(blank=True, null=True)
 
-    def __int__(self):
+    def __str__(self):
         return self.id
 
     class Meta:
         db_table = 'fatura'
 
 class FaturaOrdemServico(models.Model):
+    id = models.IntegerField(blank=True, null=True)
     id_fatura = models.ForeignKey(Fatura, models.DO_NOTHING, db_column='id_fatura')
     id_ordem_servico = models.ForeignKey(OrdemServico, models.DO_NOTHING, db_column='id_ordem_servico')
     valor = models.FloatField(blank=True, null=True)
     created_at = models.DateTimeField(blank=True, null=True)
     updated_at = models.DateTimeField(blank=True, null=True)
 
+    def __str__(self):
+        return self.id
+        
     class Meta:
         db_table = 'fatura_ordem_servico'
