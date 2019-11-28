@@ -267,6 +267,9 @@ class ClienteServicoValor(models.Model):
     created_at = models.DateTimeField(blank=True, null=True)
     updated_at = models.DateTimeField(blank=True, null=True)
 
+    def __str__(self):
+        return self.id
+
     class Meta:
         db_table = 'cliente_servico_valor'
 
@@ -288,6 +291,9 @@ class OrdemServico(models.Model):
     valor_total = models.IntegerField(blank=True, null=True)
     valor_unitario = models.IntegerField(blank=True, null=True)
 
+    def __str__(self):
+        return self.id
+
     class Meta:
         db_table = 'ordem_servico'
 
@@ -301,7 +307,10 @@ class Fatura(models.Model):
     valor_fatura = models.FloatField(blank=True, null=True)
     created_at = models.DateTimeField(blank=True, null=True)
     updated_at = models.DateTimeField(blank=True, null=True)
-        
+
+    def __str__(self):
+        return self.id
+
     class Meta:
         db_table = 'fatura'
 
@@ -313,5 +322,8 @@ class FaturaOrdemServico(models.Model):
     created_at = models.DateTimeField(blank=True, null=True)
     updated_at = models.DateTimeField(blank=True, null=True)
 
+    def __str__(self):
+        return self.id
+        
     class Meta:
         db_table = 'fatura_ordem_servico'
