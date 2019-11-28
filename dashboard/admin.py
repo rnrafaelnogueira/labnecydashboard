@@ -25,7 +25,7 @@ class FaturaAdmin(admin.ModelAdmin):
 
 class FaturaOrdemServicoAdmin(admin.ModelAdmin):
     list_display = ('id_fatura','id_ordem_servico','valor')
-    search_fields = ['id_cliente']
+    search_fields = ['id_fatura']
 
 admin.site.register(OrdemServico,OrdemServicoAdmin)
 admin.site.register(Cliente,ClienteAdmin)
