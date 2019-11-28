@@ -325,5 +325,6 @@ class FaturaOrdemServico(models.Model):
     def __int__(self):
         return self.id
 
+
     class Meta:
         db_table = 'fatura_ordem_servico'
