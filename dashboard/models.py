@@ -8,7 +8,6 @@
 from django.db import models
 
 class Categoria(models.Model):
-    id = models.IntegerField(blank=True, null=True)
     nome = models.TextField()
     detalhes = models.TextField()
     created_at = models.DateTimeField(blank=True, null=True)
@@ -23,7 +22,6 @@ class Categoria(models.Model):
 
 
 class Cliente(models.Model):
-    id = models.IntegerField(blank=True, null=True)
     nome = models.TextField()
     endereco = models.TextField()
     telefone = models.TextField()
@@ -37,7 +35,6 @@ class Cliente(models.Model):
         db_table = 'cliente'
 
 class Despesa(models.Model):
-    id = models.IntegerField(blank=True, null=True)
     nome = models.TextField()
     id_categoria = models.ForeignKey(Categoria, models.DO_NOTHING, db_column='id_categoria')
     id_user = models.ForeignKey('Users', models.DO_NOTHING, db_column='id_user')
@@ -58,7 +55,6 @@ class Despesa(models.Model):
 
 
 class Fornecedor(models.Model):
-    id = models.IntegerField(blank=True, null=True)
     nome = models.TextField()
     endereco = models.TextField(blank=True, null=True)
     telefone = models.TextField(blank=True, null=True)
@@ -74,7 +70,6 @@ class Fornecedor(models.Model):
 
 
 class GruposKanban(models.Model):
-    id = models.IntegerField(blank=True, null=True)
     nome = models.TextField()
     created_at = models.DateTimeField(blank=True, null=True)
     updated_at = models.DateTimeField(blank=True, null=True)
@@ -88,7 +83,6 @@ class GruposKanban(models.Model):
 
 
 class Mes(models.Model):
-    id = models.IntegerField(blank=True, null=True)
     descricao = models.TextField()
     deleted_at = models.DateTimeField(blank=True, null=True)
     created_at = models.DateTimeField(blank=True, null=True)
@@ -102,7 +96,6 @@ class Mes(models.Model):
         db_table = 'mes'
 
 class OrdemCompra(models.Model):
-    id = models.IntegerField(blank=True, null=True)
     descricao = models.TextField()
     id_fornecedor = models.IntegerField()
     id_situacao = models.IntegerField()
@@ -118,7 +111,6 @@ class OrdemCompra(models.Model):
         db_table = 'ordem_compra'
 
 class OrdemCompraParcelas(models.Model):
-    id = models.IntegerField(blank=True, null=True)
     parcela = models.IntegerField()
     valor = models.IntegerField()
     data_vencimento = models.IntegerField()
@@ -134,7 +126,6 @@ class OrdemCompraParcelas(models.Model):
         db_table = 'ordem_compra_parcelas'
 
 class OrdemCompraProdutos(models.Model):
-    id = models.IntegerField(blank=True, null=True)
     id_ordem_compra = models.IntegerField()
     id_produto = models.IntegerField()
     quantidade = models.IntegerField()
@@ -146,7 +137,6 @@ class OrdemCompraProdutos(models.Model):
         db_table = 'ordem_compra_produtos'
 
 class Paciente(models.Model):
-    id = models.IntegerField(blank=True, null=True)
     nome = models.TextField()
     observacao = models.TextField()
     created_at = models.DateTimeField(blank=True, null=True)
@@ -160,7 +150,6 @@ class Paciente(models.Model):
         db_table = 'paciente'
 
 class Pagamento(models.Model):
-    id = models.IntegerField(blank=True, null=True)
     valor = models.FloatField()
     descricao = models.TextField(blank=True, null=True)
     data_recibo = models.DateTimeField()
@@ -177,7 +166,6 @@ class Pagamento(models.Model):
         db_table = 'pagamento'
 
 class Produto(models.Model):
-    id = models.IntegerField(blank=True, null=True)
     nome = models.TextField()
     created_at = models.DateTimeField(blank=True, null=True)
     updated_at = models.DateTimeField(blank=True, null=True)
@@ -188,7 +176,6 @@ class Produto(models.Model):
 
 
 class Receita(models.Model):
-    id = models.IntegerField(blank=True, null=True)
     valor = models.FloatField()
     tipo_receita = models.ForeignKey('TipoReceita', models.DO_NOTHING, db_column='tipo_receita')
     mes = models.ForeignKey(Mes, models.DO_NOTHING, db_column='mes')
@@ -207,7 +194,6 @@ class Receita(models.Model):
 
 
 class Servico(models.Model):
-    id = models.IntegerField(blank=True, null=True)
     nome = models.TextField()
     created_at = models.DateTimeField(blank=True, null=True)
     updated_at = models.DateTimeField(blank=True, null=True)
@@ -220,7 +206,6 @@ class Servico(models.Model):
 
 
 class Situacao(models.Model):
-    id = models.IntegerField(blank=True, null=True)
     nome = models.TextField()
     created_at = models.DateTimeField(blank=True, null=True)
     updated_at = models.DateTimeField(blank=True, null=True)
@@ -234,7 +219,6 @@ class Situacao(models.Model):
 
 
 class TipoReceita(models.Model):
-    id = models.IntegerField(blank=True, null=True)
     descricao = models.TextField()
     deleted_at = models.DateTimeField(blank=True, null=True)
     created_at = models.DateTimeField(blank=True, null=True)
@@ -246,7 +230,6 @@ class TipoReceita(models.Model):
 
 
 class Users(models.Model):
-    id = models.IntegerField(blank=True, null=True)
     name = models.CharField(max_length=255)
     email = models.CharField(unique=True, max_length=255)
     password = models.CharField(max_length=255)
@@ -260,7 +243,6 @@ class Users(models.Model):
         db_table = 'users'
         
 class ClienteServicoValor(models.Model):
-    id = models.IntegerField(blank=True, null=True)
     id_cliente = models.ForeignKey(Cliente, models.DO_NOTHING, db_column='id_cliente')
     id_servico = models.ForeignKey(Servico, models.DO_NOTHING, db_column='id_servico')
     valor = models.IntegerField()
@@ -274,7 +256,6 @@ class ClienteServicoValor(models.Model):
         db_table = 'cliente_servico_valor'
 
 class OrdemServico(models.Model):
-    id = models.IntegerField(blank=True, null=True)
     id_cliente = models.ForeignKey(Cliente, models.DO_NOTHING, db_column='id_cliente')
     id_paciente = models.ForeignKey(Paciente, models.DO_NOTHING, db_column='id_paciente')
     id_servico = models.ForeignKey(Servico, models.DO_NOTHING, db_column='id_servico')
@@ -298,7 +279,6 @@ class OrdemServico(models.Model):
         db_table = 'ordem_servico'
 
 class Fatura(models.Model):
-    id = models.IntegerField(blank=True, null=True)
     id_cliente = models.ForeignKey(Cliente, models.DO_NOTHING, db_column='id_cliente')
     data_geracao = models.DateTimeField(blank=True, null=True)
     referencia = models.TextField()
@@ -315,7 +295,6 @@ class Fatura(models.Model):
         db_table = 'fatura'
 
 class FaturaOrdemServico(models.Model):
-    id = models.IntegerField(blank=True, null=True)
     id_fatura = models.ForeignKey(Fatura, models.DO_NOTHING, db_column='id_fatura')
     id_ordem_servico = models.ForeignKey(OrdemServico, models.DO_NOTHING, db_column='id_ordem_servico')
     valor = models.FloatField(blank=True, null=True)
