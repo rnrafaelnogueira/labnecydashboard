@@ -322,9 +322,5 @@ class FaturaOrdemServico(models.Model):
     created_at = models.DateTimeField(blank=True, null=True)
     updated_at = models.DateTimeField(blank=True, null=True)
 
-    def __int__(self):
-        return self.id
-
-
     class Meta:
         db_table = 'fatura_ordem_servico'
