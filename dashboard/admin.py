@@ -6,16 +6,16 @@ from .models import OrdemServico,Cliente,Servico,ClienteServicoValor,Fornecedor,
 
 
 class OrdemServicoAdmin(admin.ModelAdmin):
-    list_display = ('id_cliente', 'id_situacao')
+    list_display = ('id','id_cliente', 'id_situacao')
     list_filter = ['id_cliente']
 
 class ClienteAdmin(admin.ModelAdmin):
-    list_display = ('nome','endereco','telefone')
+    list_display = ('id','nome','endereco','telefone')
     search_fields = ['nome']
 
 
 class ClienteServicoValorAdmin(admin.ModelAdmin):
-    list_display = ('id_cliente','id_servico','valor')
+    list_display = ('id','id_cliente','id_servico','valor')
     search_fields = ['id_cliente']
 
 
@@ -24,7 +24,7 @@ class FaturaAdmin(admin.ModelAdmin):
     search_fields = ['id_cliente']
 
 class FaturaOrdemServicoAdmin(admin.ModelAdmin):
-    list_display = ('id_fatura','id_ordem_servico','valor')
+    list_display = ('id','id_fatura','id_ordem_servico','valor')
     search_fields = ['id_cliente']
 
 admin.site.register(OrdemServico,OrdemServicoAdmin)

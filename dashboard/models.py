@@ -88,6 +88,7 @@ class GruposKanban(models.Model):
 
 
 class Mes(models.Model):
+    id = models.IntegerField(blank=True, null=True)
     descricao = models.TextField()
     deleted_at = models.DateTimeField(blank=True, null=True)
     created_at = models.DateTimeField(blank=True, null=True)
