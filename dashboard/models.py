@@ -315,7 +315,6 @@ class Fatura(models.Model):
         db_table = 'fatura'
 
 class FaturaOrdemServico(models.Model):
-    id = models.IntegerField(blank=True, null=True)
     id_fatura = models.ForeignKey(Fatura, models.DO_NOTHING, db_column='id_fatura')
     id_ordem_servico = models.ForeignKey(OrdemServico, models.DO_NOTHING, db_column='id_ordem_servico')
     valor = models.FloatField(blank=True, null=True)
