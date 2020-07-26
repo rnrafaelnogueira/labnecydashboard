@@ -1,13 +1,15 @@
 from django.contrib import admin
 
+
 # Register your models here.
 
 from .models import OrdemServico,Cliente,Servico,ClienteServicoValor,Fornecedor,Produto,Fatura,FaturaOrdemServico,Situacao,Paciente,GruposKanban
 
 
 class OrdemServicoAdmin(admin.ModelAdmin):
-    list_display = ('id','id_cliente', 'id_situacao')
-    list_filter = ['id_cliente']
+    list_display = ('id','id_cliente','id_paciente','data_entrada','quantidade','valor_unitario','valor_total')
+    list_filter = ['id_cliente','data_entrada']
+    list_per_page = 10 
 
 class ClienteAdmin(admin.ModelAdmin):
     list_display = ('id','nome','endereco','telefone')
