@@ -7,7 +7,9 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 from django.contrib.auth.models import User
-
+import logging
+from django.utils.timezone import now
+from datetime import datetime, timedelta
 
 class Categoria(models.Model):
     nome = models.TextField()
@@ -258,11 +260,14 @@ class ClienteServicoValor(models.Model):
         db_table = 'cliente_servico_valor'
 
 class OrdemServico(models.Model):
+
+    BOOL_CHOICES = (('S', 'Sim'), ('N', 'Não'))
+
     id_cliente = models.ForeignKey(Cliente, models.DO_NOTHING, db_column='id_cliente')
     id_paciente = models.ForeignKey(Paciente, models.DO_NOTHING, db_column='id_paciente')
     id_servico = models.ForeignKey(Servico, models.DO_NOTHING, db_column='id_servico')
-    id_situacao = models.ForeignKey(Situacao, models.DO_NOTHING, db_column='id_situacao')
-    id_grupo_kanban = models.ForeignKey(GruposKanban, models.DO_NOTHING, db_column='id_grupo_kanban')
+    id_situacao = models.ForeignKey(Situacao, models.DO_NOTHING, db_column='id_situacao',default='5')
+    id_grupo_kanban = models.ForeignKey(GruposKanban, models.DO_NOTHING, db_column='id_grupo_kanban',default='11')
     data_entrada = models.DateTimeField(blank=True, null=True)
     data_previsao_entrega = models.DateTimeField(blank=True, null=True)
     quantidade = models.IntegerField()
@@ -270,12 +275,25 @@ class OrdemServico(models.Model):
     cor = models.TextField()
     created_at = models.DateTimeField(blank=True, null=True)
     updated_at = models.DateTimeField(blank=True, null=True)
-    valor_padrao = models.CharField(max_length=1)
+    valor_padrao = models.CharField(max_length=1,choices=BOOL_CHOICES)
     valor_total = models.IntegerField(blank=True, null=True)
     valor_unitario = models.IntegerField(blank=True, null=True)
 
     def __int__(self):
         return self.id
+
+    def save(self, *args, **kwargs):
+
+        if (self.valor_padrao == 'S'):
+            for e in ClienteServicoValor.objects.filter(id_cliente = self.id_cliente, id_servico=self.id_servico):
+                self.valor_unitario = e.valor
+        
+        self.data_entrada = datetime.now()
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
+        self.data_previsao_entrega = datetime.now() + timedelta(days=3)
+        self.valor_total = self.quantidade * self.valor_unitario
+        super().save(*args, **kwargs)
 
     class Meta:
         db_table = 'ordem_servico'

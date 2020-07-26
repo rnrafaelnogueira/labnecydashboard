@@ -1,4 +1,5 @@
 from django.contrib import admin
+import logging
 
 
 # Register your models here.
@@ -7,8 +8,9 @@ from .models import OrdemServico,Cliente,Servico,ClienteServicoValor,Fornecedor,
 
 
 class OrdemServicoAdmin(admin.ModelAdmin):
-    list_display = ('id','id_cliente','id_paciente','data_entrada','quantidade','valor_unitario','valor_total')
+    list_display = ('id','id_cliente','id_paciente','id_servico','data_entrada','quantidade','valor_unitario','valor_total')
     list_filter = ['id_cliente','data_entrada']
+    fields = ('id_cliente', 'id_paciente','id_servico','quantidade','valor_padrao','valor_unitario','id_situacao','id_grupo_kanban')
     list_per_page = 10 
 
 class ClienteAdmin(admin.ModelAdmin):
