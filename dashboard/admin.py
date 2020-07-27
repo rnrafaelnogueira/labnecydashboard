@@ -13,6 +13,12 @@ class OrdemServicoAdmin(admin.ModelAdmin):
     fields = ('id_cliente', 'id_paciente','id_servico','quantidade','valor_padrao','valor_unitario','id_situacao','id_grupo_kanban')
     list_per_page = 10 
 
+class PacienteAdmin(admin.ModelAdmin):
+    list_display = ('nome','observacao')
+    list_filter = ['nome']
+    fields = ('nome','observacao')
+    list_per_page = 10 
+
 class ClienteAdmin(admin.ModelAdmin):
     list_display = ('id','nome','endereco','telefone')
     search_fields = ['nome']
@@ -33,7 +39,7 @@ admin.site.register(OrdemServico,OrdemServicoAdmin)
 admin.site.register(Cliente,ClienteAdmin)
 admin.site.register(Situacao)
 admin.site.register(Servico)
-admin.site.register(Paciente)
+admin.site.register(Paciente,PacienteAdmin)
 admin.site.register(GruposKanban)
 admin.site.register(ClienteServicoValor, ClienteServicoValorAdmin)
 admin.site.register(Fatura,FaturaAdmin)

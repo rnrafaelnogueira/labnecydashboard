@@ -34,6 +34,11 @@ class Cliente(models.Model):
     def __str__(self):
         return self.nome
 
+    def save(self, *args, **kwargs):
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
+        super().save(*args, **kwargs)
+
     class Meta:
         managed = True
         db_table = 'cliente'
@@ -110,6 +115,11 @@ class OrdemCompra(models.Model):
     def __str__(self):
         return self.descricao
 
+    def save(self, *args, **kwargs):
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
+        super().save(*args, **kwargs)
+
     class Meta:
         managed = True
         db_table = 'ordem_compra'
@@ -121,6 +131,11 @@ class OrdemCompraParcelas(models.Model):
     created_at = models.DateTimeField(blank=True, null=True)
     updated_at = models.DateTimeField(blank=True, null=True)
     id_ordem_compra = models.TextField()
+
+    def save(self, *args, **kwargs):
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.parcela
@@ -136,6 +151,11 @@ class OrdemCompraProdutos(models.Model):
     created_at = models.DateTimeField(blank=True, null=True)
     updated_at = models.DateTimeField(blank=True, null=True)
 
+    def save(self, *args, **kwargs):
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
+        super().save(*args, **kwargs)
+
     class Meta:
         managed = True
         db_table = 'ordem_compra_produtos'
@@ -148,6 +168,11 @@ class Paciente(models.Model):
 
     def __str__(self):
         return self.nome
+
+    def save(self, *args, **kwargs):
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
+        super().save(*args, **kwargs)
 
     class Meta:
         managed = True
@@ -165,6 +190,11 @@ class Pagamento(models.Model):
     created_at = models.DateTimeField(blank=True, null=True)
     updated_at = models.DateTimeField(blank=True, null=True)
 
+    def save(self, *args, **kwargs):
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
+        super().save(*args, **kwargs)
+
     class Meta:
         managed = True
         db_table = 'pagamento'
@@ -173,6 +203,11 @@ class Produto(models.Model):
     nome = models.TextField()
     created_at = models.DateTimeField(blank=True, null=True)
     updated_at = models.DateTimeField(blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
+        super().save(*args, **kwargs)
 
     class Meta:
         managed = True
@@ -192,6 +227,11 @@ class Receita(models.Model):
     nome = models.TextField(blank=True, null=True)
     data_recibo = models.DateTimeField(blank=True, null=True)
 
+    def save(self, *args, **kwargs):
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
+        super().save(*args, **kwargs)
+
     class Meta:
         managed = True
         db_table = 'receita'
@@ -203,6 +243,11 @@ class Servico(models.Model):
     updated_at = models.DateTimeField(blank=True, null=True)
     def __str__(self):
         return self.nome
+
+    def save(self, *args, **kwargs):
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
+        super().save(*args, **kwargs)
 
     class Meta:
         managed = True
@@ -217,6 +262,11 @@ class Situacao(models.Model):
     def __str__(self):
         return self.nome
 
+    def save(self, *args, **kwargs):
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
+        super().save(*args, **kwargs)
+
     class Meta:
         managed = True
         db_table = 'situacao'
@@ -227,6 +277,11 @@ class TipoReceita(models.Model):
     deleted_at = models.DateTimeField(blank=True, null=True)
     created_at = models.DateTimeField(blank=True, null=True)
     updated_at = models.DateTimeField(blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
+        super().save(*args, **kwargs)
 
     class Meta:
         managed = True
@@ -242,6 +297,11 @@ class Users(models.Model):
     updated_at = models.DateTimeField(blank=True, null=True)
     cpf = models.TextField(blank=True, null=True)
 
+    def save(self, *args, **kwargs):
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
+        super().save(*args, **kwargs)
+
     class Meta:
         managed = True
         db_table = 'users'
@@ -255,6 +315,11 @@ class ClienteServicoValor(models.Model):
 
     def __str__(self):
         return self.id
+
+    def save(self, *args, **kwargs):
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
+        super().save(*args, **kwargs)
 
     class Meta:
         db_table = 'cliente_servico_valor'
@@ -311,6 +376,11 @@ class Fatura(models.Model):
     def __int__(self):
         return self.id
 
+    def save(self, *args, **kwargs):
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
+        super().save(*args, **kwargs)
+
     class Meta:
         db_table = 'fatura'
 
@@ -324,5 +394,10 @@ class FaturaOrdemServico(models.Model):
     def __int__(self):
         return self.id
 
+    def save(self, *args, **kwargs):
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
+        super().save(*args, **kwargs)
+        
     class Meta:
         db_table = 'fatura_ordem_servico'
